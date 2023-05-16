@@ -1,43 +1,91 @@
-.navbar {
+.nav-container {
 	background: #4d4d4d;
 	padding: 12px 11.5%;
 	display: flex;
-	.logo {
-		font-size: 34px;
-        line-height: 150%;
-		font-weight: 500;
-		background: #4d4d4d;
-        color: #fff;
-		span {
-			font-size: 48px;
-			background: #4d4d4d;
-		}
-	}
-	.links {
+	flex-direction: column;
+	.navbar {
 		background: #4d4d4d;
 		display: flex;
-		justify-content: center;
-		align-items: center;
-		margin-left: auto;
-		.active {
-			color: #303030;
-			background: #fff;
-            border-color: #303030;
-		}
-		a {
+		.logo {
+			font-size: 34px;
+			line-height: 150%;
+			font-weight: 500;
 			background: #4d4d4d;
 			color: #fff;
-			margin-left: 16px;
-			border: 1px solid #fff;
-			border-radius: 20px;
-			.link {
-				width: 80px;
-				height: 40px;
-				font-size: 14px;
+			span {
+				font-size: 48px;
+				background: #4d4d4d;
+			}
+		}
+		.links {
+			background: #4d4d4d;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-left: auto;
+			transition: transform 1s ease;
+			.active {
+				color: #303030;
+				background: #fff;
+				border-color: #303030;
+			}
+			a {
+				background: #4d4d4d;
+				color: #fff;
+				margin-left: 16px;
+				border: 1px solid #fff;
+				border-radius: 20px;
+				.link {
+					width: 80px;
+					height: 40px;
+					font-size: 14px;
+					background: transparent;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+			}
+		}
+		.hamb-menu {
+			display: none;
+			background: transparent;
+			color: #fff;
+			margin-left: auto;
+			svg {
+				stroke: none;
 				background: transparent;
+				width: 30px;
+				height: 30px;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.nav-container {
+		.navbar {
+			position: relative;
+			.links-uncollapsed {
+				display: none;
+			}
+			.links-collapsed {
+				padding: 12px;
+				flex-direction: column;
+				position: absolute;
+				right: 50px;
+				border-radius: 20px;
+				a {
+					margin-left: 0;
+				}
+				a:not(:last-child) {					
+					margin-bottom: 10px;
+				}
+			}
+			.hamb-menu {
 				display: flex;
 				justify-content: center;
 				align-items: center;
+				cursor: pointer;
 			}
 		}
 	}

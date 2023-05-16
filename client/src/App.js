@@ -14,12 +14,15 @@ import Login from "./pages/login/Login";
 
 function App() {
 	const [isAdminPage, setAdminPage] = useState(false);
-	const [isLoggedIn, setLoggedIn] = useState(false);
+	const [isLoggedIn, setLoggedIn] = useState(true);
+	const [isCollapsed, setCollapsed] = useState(false);
 
 	const data = {
 		setAdminPage,
 		isLoggedIn,
-		setLoggedIn
+		setLoggedIn,
+		isCollapsed,
+		setCollapsed
 	};
 
 	return (
