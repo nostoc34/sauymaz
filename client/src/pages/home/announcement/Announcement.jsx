@@ -22,9 +22,11 @@ function Announcement(props) {
 		top: "50%",
 		left: "50%",
 		transform: "translate(-50%, -50%)",
+		fontWeight: 400,
 		width: isMobile ? 300 : null,
 		bgcolor: "background.paper",
 		border: "2px solid #000",
+		borderRadius: "20px",
 		boxShadow: 24,
 		p: 4,
 		display: "flex",
@@ -53,7 +55,7 @@ function Announcement(props) {
 						>
 							{props.title}
 						</Typography>
-						<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+						<Typography id="modal-modal-description" sx={{ mt: 2, fontSize: isMobile ? "12px" : "16px" }}>
 							{props.content}
 						</Typography>
 					</Box>
