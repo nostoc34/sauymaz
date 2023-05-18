@@ -9,9 +9,7 @@ const blogSchema = mongoose.Schema(
 			default: "",
 		},
 	},
-	{
-		timestapms: true,
-	}
+	{ timestamps: true }
 );
 
 const Blog = mongoose.model("Blog", blogSchema);

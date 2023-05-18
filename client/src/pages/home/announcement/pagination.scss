@@ -1,0 +1,85 @@
+.pages-box {
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+}
+
+
+.page-btn {
+    position: relative;
+    display: block;
+    padding: 5px;
+    margin-left: -1px;
+    line-height: 1;
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #000;
+    font-weight: bold;
+    border-radius: 0;
+}
+
+.page-btn:hover {
+    color: #fff;
+    background-color: #000;
+}
+
+.pageNumbers {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+    justify-self: flex-end;
+  }
+  
+  .pageNumbers li {
+    padding: 5px;
+    cursor: pointer;
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #000;
+    font-weight: bold;
+  }
+  
+  .pageNumbers li.active {
+    color: #fff;
+    background-color: #000;
+  }
+  
+  .pageNumbers li:hover {
+    color: #fff;
+    background-color: #000;
+  }
+  
+  .pageNumbers li button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  .pageNumbers li button:hover {
+    background-color: white;
+    color: black;
+  }
+  .pageNumbers li button:focus {
+    outline: none;
+  }
+  
+  .loadmore {
+    padding: 1rem;
+    background-color: transparent;
+  
+    color: white;
+    font-size: 1.2rem;
+    border: 1px solid white;
+    cursor: pointer;
+  }
+  
+  .modal-body {
+    text-align: center;
+  }
+
+
+  .pagination {
+    justify-self: flex-end;
+  }

@@ -72,8 +72,10 @@
 				padding: 12px;
 				flex-direction: column;
 				position: absolute;
-				right: 50px;
+				right: 0;
+				top: 40px;
 				border-radius: 20px;
+				border: 1px solid #fff;
 				a {
 					margin-left: 0;
 				}
@@ -86,6 +88,9 @@
 				justify-content: center;
 				align-items: center;
 				cursor: pointer;
+			}
+			.logo {
+				font-size: 24px;
 			}
 		}
 	}

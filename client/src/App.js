@@ -25,6 +25,8 @@ function App() {
 		setCollapsed
 	};
 
+	
+
 	return (
 		<>
 			<MainContext.Provider value={data}>
@@ -35,6 +37,7 @@ function App() {
 						<Route path="/hakkimda" element={<About />} />
 						<Route path="/akademik" element={<Academic />} />
 						<Route path="/blog" element={<Blog />} />
+						<Route path="/blog/:id" element={<h1>blogcuk</h1>} />
 						<Route path="/iletisim" element={<Contact />} />
 						<Route path="/admin" element={<Admin />} />
 						<Route path="/admin/login" element={<Login />} />

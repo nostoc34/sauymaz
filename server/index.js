@@ -24,16 +24,15 @@ import educationRoutes from "./routes/education.js";
 import adminRoutes from "./routes/admin.js";
 import academicLinkRoutes from "./routes/academicLink.js";
 
+// import HomeProfile from "./server/models/homeProfile.js";
 
 //initial settings
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 dotenv.config();
 const app = express();
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
-app.use("/assets", express.static(path.join(__dirname, "public/assets")));
+app.use("/assets", express.static(path.join(__dirname, "/public/assets")));
 //registerAdmin();
 
 
@@ -46,7 +45,7 @@ const storage = multer.diskStorage({
 	  cb(null, file.originalname);
 	},
   });
-  const upload = multer({ storage });
+const upload = multer({ storage });
 
 //routes with files
 app.put("/api/about-profile", protect, upload.single("picture"), updateProfileA);
@@ -67,6 +66,13 @@ app.use("/api/contact", contactRoutes);
 app.use("/api/education", educationRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/academic-link", academicLinkRoutes);
+
+
+// const home = new HomeProfile({
+// 	content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tincidunt leo sed volutpat ultrices. Duis cursus sodales mauris in ultricies. Suspendisse vel molestie turpis, vel tristique dui. Maecenas suscipit libero a orci vehicula sagittis feugiat eget felis. Integer ac pellentesque magna. Nullam viverra tortor orci, sit amet feugiat ipsum porttitor e.",
+// 	picturePath: "homepp.jpg",
+// });
+// home.save();
 
 
 //connect to db

@@ -1,0 +1,44 @@
+.about {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 6% 4%;
+	border-radius: 20px;
+	width: 50%;
+	margin-right: 25px;
+	background: #4d4d4d;
+	align-self: stretch;
+
+	img {
+		width: 100%;
+		max-width: 300px;
+		height: auto;
+		border-radius: 50%;
+		margin-bottom: 	50px;
+	}
+
+	.text {
+		padding: 0 10%;
+		color: #fff;
+		font-size: 16px;
+		font-weight: 400;
+		text-align: justify;
+		line-height: 150%;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.about {
+		margin-right: 0;
+		margin-bottom: 50px;
+		width: 100%;
+		img {
+			width: 100%;
+			max-width: 200px;
+		}
+        .text {
+            padding: 0 10%;
+        }
+	}
+}
