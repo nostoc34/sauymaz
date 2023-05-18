@@ -15,7 +15,7 @@ function Entry(props) {
     }
 
 	return (
-		<div className="entry">
+		<div className="entry frame-w">
 			<div className="header">
 				<h5 id={props.id}> {props.title} </h5>
 				<h6> {props.date} </h6>

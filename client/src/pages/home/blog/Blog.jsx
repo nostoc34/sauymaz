@@ -23,7 +23,7 @@ function Blog() {
 
 	const options = { day: "numeric", month: "numeric", year: "numeric" };
 	return (
-		<div className="blog">
+		<div className="home-blog frame">
 			<div className="title">
 				<h3>BLOG</h3>
 			</div>

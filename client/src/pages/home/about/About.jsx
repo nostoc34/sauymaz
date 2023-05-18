@@ -21,7 +21,7 @@ function About() {
 		fetchData();
 	}, []);
 	return (
-		<div className="about">
+		<div className="home-about frame">
 			<div>
 				{data && data.length ? (
 					<img

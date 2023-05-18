@@ -4,7 +4,7 @@ import Pagination from "./Pagination";
 
 function Announcements() {
 	return (
-		<div className="announcements">
+		<div className="announcements frame">
 			<div className="title">
 				<h3>DUYURULAR</h3>
 			</div>

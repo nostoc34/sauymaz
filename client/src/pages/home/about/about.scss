@@ -1,13 +1,11 @@
-.about {
+.home-about {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	padding: 6% 4%;
-	border-radius: 20px;
 	width: 50%;
 	margin-right: 25px;
-	background: #4d4d4d;
 	align-self: stretch;
 
 	img {
@@ -29,7 +27,7 @@
 }
 
 @media screen and (max-width: 1000px) {
-	.about {
+	.home-about {
 		margin-right: 0;
 		margin-bottom: 50px;
 		width: 100%;

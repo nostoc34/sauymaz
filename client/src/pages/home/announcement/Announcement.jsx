@@ -36,7 +36,7 @@ function Announcement(props) {
 
 	return (
 		<div>
-			<div className="announcement" onClick={handleOpen}>
+			<div className="announcement frame-w" onClick={handleOpen}>
 				<div className="date">{props.date}</div>
 				<div className="vr"></div>
 				<div className="title">{props.title}</div>

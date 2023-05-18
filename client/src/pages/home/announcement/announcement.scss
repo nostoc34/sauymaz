@@ -3,8 +3,6 @@
     justify-content: start;
     align-items: center;
     margin-bottom: 20px;
-    background: #faf3f3;
-    border-radius: 20px;
     padding: 5px 50px;
     cursor: pointer;
     
@@ -13,13 +11,18 @@
         height: 20px;
         width: 2px;
         background: #000;
-        margin: 0 10px;
+        margin: 0 20px 0 10px;
     }
 
     .title, .date {
         font-size: 18px;
         font-weight: 500;
         line-height: 150%;
+    }
+
+    .date {
+        width: 150px;
+
     }
 }
 
@@ -33,11 +36,23 @@
     }
 }
 
+@media screen and (max-width: 600px) {
+    .announcement {
+        .date {
+            width: 120px;
+        }
+    }
+}
+
 @media screen and (max-width: 400px) {
     .announcement {
         padding: 5px 25px;
         .title, .date {
             font-size: 14px;
+        }
+        .date {
+            width: 100px;
+    
         }
     }
 }
