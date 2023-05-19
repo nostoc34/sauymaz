@@ -8,6 +8,7 @@ import Home from "./pages/home/Home";
 import About from "./pages/about/About";
 import Academic from "./pages/academic/Academic";
 import Blog from "./pages/blog/Blog";
+import InnerBlog from "./pages/blog/inner blog/InnerBlog";
 import Contact from "./pages/contact/Contact";
 import Admin from "./pages/admin/Admin";
 import Login from "./pages/login/Login";
@@ -37,7 +38,7 @@ function App() {
 						<Route path="/hakkimda" element={<About />} />
 						<Route path="/akademik" element={<Academic />} />
 						<Route path="/blog" element={<Blog />} />
-						<Route path="/blog/:id" element={<h1>blogcuk</h1>} />
+						<Route path="/blog/:id" element={<InnerBlog />} />
 						<Route path="/iletisim" element={<Contact />} />
 						<Route path="/admin" element={<Admin />} />
 						<Route path="/admin/login" element={<Login />} />

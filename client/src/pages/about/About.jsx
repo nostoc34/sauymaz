@@ -2,7 +2,9 @@ import React from "react";
 import { useContext } from "react";
 import { useEffect } from "react";
 import MainContext from "../../MainContext";
+import "./about.scss";
 import Header from "../../layout/header/Header";
+import Banner from "./banner/Banner";
 
 function About() {
 	const { setCollapsed } = useContext(MainContext);
@@ -12,15 +14,14 @@ function About() {
 	}, []);
 
 	return (
-		<div className="about">
+		<>
 			<Header header="HAKKIMDA" />
-			<div className="banner"></div>
-			<div className="ed-aca">
-				<div className="education"></div>
-				<div className="aca-past"></div>
+			<div className="about">
+				<Banner />
+				<div className="ed-aca"></div>
+				<div className="aca-links frame"></div>
 			</div>
-			<div className="aca-links"></div>
-		</div>
+		</>
 	);
 }
 

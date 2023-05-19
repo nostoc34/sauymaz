@@ -48,7 +48,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 //routes with files
-app.put("/api/about-profile", protect, upload.single("picture"), updateProfileA);
+app.put("/api/about-profile/:id", protect, upload.single("picture"), updateProfileA);
 app.put("/api/home-profile", protect, upload.single("picture"), updateProfileH);
 app.post("/api/announcement", protect, upload.single("picture"), newAnnouncement);
 app.put("/api/announcement/:id", protect, upload.single("picture"), updateAnnouncement);

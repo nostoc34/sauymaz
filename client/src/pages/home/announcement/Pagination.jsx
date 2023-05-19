@@ -37,8 +37,8 @@ function Pagination() {
 							key={x._id}
 							title={x.title}
 							date={publishDate}
-              content={x.content}
-              picturePath={`http://localhost:5000/assets/${x.picturePath}`}
+							content={x.content}
+							picturePath={`http://localhost:5000/assets/${x.picturePath}`}
 						/>
 					);
 				})}
