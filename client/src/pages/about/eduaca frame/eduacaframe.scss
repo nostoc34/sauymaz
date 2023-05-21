@@ -1,0 +1,35 @@
+.eduaca {
+    padding: 4% 7%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .dates {
+        margin-right: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        h5 {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 150%;
+        }
+    }
+    .info {
+        h4,h5,h6 {
+            line-height: 150%;
+        }
+        h4 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+        h5 {
+            font-size: 15px;
+            font-weight: 500;
+        }
+        h6 {
+            font-size: 14px;
+            font-weight: 300;
+        }
+    }
+}

@@ -23,10 +23,8 @@ function App() {
 		isLoggedIn,
 		setLoggedIn,
 		isCollapsed,
-		setCollapsed
+		setCollapsed,
 	};
-
-	
 
 	return (
 		<>
@@ -43,7 +41,7 @@ function App() {
 						<Route path="/admin" element={<Admin />} />
 						<Route path="/admin/login" element={<Login />} />
 					</Routes>
-					{isAdminPage ? null : <Footer />}					
+					{isAdminPage ? null : <Footer />}
 				</BrowserRouter>
 			</MainContext.Provider>
 		</>

@@ -3,6 +3,24 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2% 11.5%;
+    padding: 3% 11.5%;
     background: #303030;
+
+    .ed-aca {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 50px;
+        margin-bottom: 50px;
+    }
+}
+
+
+@media screen and (max-width: 1000px) {
+    .about {
+        .ed-aca {
+            flex-direction: column;
+        }
+    }
 }

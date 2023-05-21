@@ -38,7 +38,7 @@ function Pagination() {
 							title={x.title}
 							date={publishDate}
 							content={x.content}
-							picturePath={`http://localhost:5000/assets/${x.picturePath}`}
+							picturePath={x.picturePath ? `http://localhost:5000/assets/${x.picturePath}` : "http://localhost:5000/assets/duyuru.jpg"}
 						/>
 					);
 				})}
