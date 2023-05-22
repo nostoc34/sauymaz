@@ -1,20 +1,10 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./navbar.scss";
 import { NavLink } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useState } from "react";
-import { useContext } from "react";
 import MainContext from "../../MainContext";
-import { useEffect } from "react";
 
 function Navbar() {
-	const list = [
-		{ to: "/", title: "Anasayfa", id: "homelink" },
-		{ to: "/hakkimda", title: "Hakkımda", id: "aboutlink" },
-		{ to: "/akademik", title: "Akademik", id: "acalink" },
-		{ to: "/blog", title: "Blog", id: "bloglink" },
-		{ to: "/iletisim", title: "İletişim", id: "contactlink" },
-	];
 
 	const { isCollapsed, setCollapsed } = useContext(MainContext);
 
