@@ -2,9 +2,9 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import "./info.scss";
-import InstagramIcon from '@mui/icons-material/Instagram';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import InstagramIcon from "@mui/icons-material/Instagram";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 function Info() {
 	const [data, setData] = useState([]);
@@ -63,10 +63,17 @@ function Info() {
 							<span> {data[0].adress} </span>
 						</div>
 					</div>
-					<div className="socials">					
-						<InstagramIcon />
-						<TwitterIcon />
-						<LinkedInIcon />
+					<div className="socials">
+						<a href={data[0].instagram} target="_blank" rel="noreferrer">
+							{" "}
+							<InstagramIcon />{" "}
+						</a>
+						<a href={data[0].twitter} target="_blank" rel="noreferrer">
+							<TwitterIcon />
+						</a>
+						<a href={data[0].linkedin} target="_blank" rel="noreferrer">
+							<LinkedInIcon />
+						</a>
 					</div>
 				</div>
 			) : null}

@@ -32,10 +32,7 @@ function AcademicLinks() {
 				{data.map((x) => {
 					return (
 						<div className="link-box">
-							<a
-								href={x.link}
-								target="blank"
-							>
+							<a href={x.link} target="_blank" rel="noreferrer">
 								{x.title}
 							</a>
 						</div>
