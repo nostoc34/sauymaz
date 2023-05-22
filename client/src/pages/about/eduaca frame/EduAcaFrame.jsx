@@ -12,7 +12,7 @@ function EduAcaFrame(props) {
 					<h5> {props.from} </h5>
 				</span>
 			</div>
-			<div className="info">
+			<div className="eduaca-info">
 				<div>
 					<h4> {props.title} </h4>
 				</div>

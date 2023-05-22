@@ -5,6 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { useState } from "react";
 import { useContext } from "react";
 import MainContext from "../../MainContext";
+import { useEffect } from "react";
 
 function Navbar() {
 	const list = [
@@ -15,7 +16,26 @@ function Navbar() {
 		{ to: "/iletisim", title: "İletişim", id: "contactlink" },
 	];
 
-	const {isCollapsed, setCollapsed} = useContext(MainContext);	
+	const { isCollapsed, setCollapsed } = useContext(MainContext);
+
+	const [data, setData] = useState([]);
+
+	const fetchData = () => {
+		fetch("http://localhost:5000/api/navbar")
+			.then((response) => {
+				return response.json();
+			})
+			.then((APIData) => {
+				setData(APIData.sort((a, b) => a.index - b.index));
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+
+	useEffect(() => {
+		fetchData();
+	}, []);
 
 	function handleClick() {
 		setCollapsed(!isCollapsed);
@@ -27,23 +47,26 @@ function Navbar() {
 				<div className="logo">
 					<span>S</span>AİT <span>A</span>Lİ <span>U</span>YMAZ
 				</div>
-				<div className={`links ${isCollapsed ? "links-collapsed" : "links-uncollapsed"}`}>
-					{list.map((sa) => {
+				<div
+					className={`links ${
+						isCollapsed ? "links-collapsed" : "links-uncollapsed"
+					}`}
+				>
+					{data.map((x) => {
 						return (
 							<NavLink
-								id={sa.id}
-								key={sa.id}
-								to={sa.to}
+								key={x.index}
+								to={x.to}
 								className={({ isActive }) =>
 									isActive ? "active" : ""
 								}
 							>
-								<div className="link">{sa.title}</div>
+								<div className="link">{x.title}</div>
 							</NavLink>
 						);
 					})}
 				</div>
-				<div className="hamb-menu"  onClick={handleClick}>
+				<div className="hamb-menu" onClick={handleClick}>
 					<GiHamburgerMenu />
 				</div>
 			</div>

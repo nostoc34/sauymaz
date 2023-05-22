@@ -37,12 +37,12 @@ function InnerBlog() {
 
 	useEffect(() => {
 		const timeout = setTimeout(() => {
-		  setCopied(false);
-		}, 1000)
+			setCopied(false);
+		}, 1000);
 		return () => {
-		  clearTimeout(timeout);
-		}
-	  }, [copied]);
+			clearTimeout(timeout);
+		};
+	}, [copied]);
 
 	useEffect(() => {
 		setCollapsed(false);
@@ -63,9 +63,12 @@ function InnerBlog() {
 					).toLocaleDateString("tr-TR", options);
 					return (
 						<div className="inner-blog">
-							<ArrowBackIcon className="go-back" onClick={() => {
-								navigate("/blog");
-							}} />
+							<ArrowBackIcon
+								className="go-back"
+								onClick={() => {
+									navigate("/blog");
+								}}
+							/>
 							<div>
 								<img
 									src={
@@ -88,13 +91,10 @@ function InnerBlog() {
 								<p> {x.content} </p>
 							</div>
 							<div className="btn-cont">
-								<div
-									onClick={copyToClip}
-									className="share-btn"
-								>
+								<div onClick={copyToClip} className="share-btn">
 									Paylaş
 								</div>
-								{copied && <span>Link kopyalandı!</span> }
+								{copied && <span>Link kopyalandı!</span>}
 							</div>
 						</div>
 					);

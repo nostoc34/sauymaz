@@ -23,6 +23,7 @@ import contactRoutes from "./routes/contact.js";
 import educationRoutes from "./routes/education.js";
 import adminRoutes from "./routes/admin.js";
 import academicLinkRoutes from "./routes/academicLink.js";
+import navbarLinkRoutes from "./routes/navbarLink.js";
 
 // import HomeProfile from "./server/models/homeProfile.js";
 
@@ -66,6 +67,7 @@ app.use("/api/contact", contactRoutes);
 app.use("/api/education", educationRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/academic-link", academicLinkRoutes);
+app.use("/api/navbar", navbarLinkRoutes);
 
 
 // const home = new HomeProfile({

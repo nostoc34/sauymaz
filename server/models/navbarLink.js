@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const navbarLinkSchema = mongoose.Schema({
     title: String,
 	to: String,
+    index: Number,
 });
 
 const NavbarLink = mongoose.model("NavbarLink", navbarLinkSchema);
