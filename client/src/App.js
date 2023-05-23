@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MainContext from "./MainContext";
 
 import Navbar from "./layout/navbar/Navbar";
@@ -15,8 +15,18 @@ import Login from "./pages/login/Login";
 
 function App() {
 	const [isAdminPage, setAdminPage] = useState(false);
-	const [isLoggedIn, setLoggedIn] = useState(true);
+	const [isLoggedIn, setLoggedIn] = useState(false);
 	const [isCollapsed, setCollapsed] = useState(false);
+	const [token, setToken] = useState("");
+
+	useEffect(() => {
+		const data = window.localStorage.getItem('loggedIn');
+		if ( data !== null ) setLoggedIn(JSON.parse(data));
+	  }, []);
+	useEffect(() => {
+		localStorage.setItem("loggedIn", JSON.stringify(isLoggedIn));
+	}, [isLoggedIn]);
+	
 
 	const data = {
 		setAdminPage,
@@ -24,6 +34,8 @@ function App() {
 		setLoggedIn,
 		isCollapsed,
 		setCollapsed,
+		token,
+		setToken,
 	};
 
 	return (
@@ -38,8 +50,8 @@ function App() {
 						<Route path="/blog" element={<Blog />} />
 						<Route path="/blog/:id" element={<InnerBlog />} />
 						<Route path="/iletisim" element={<Contact />} />
-						<Route path="/admin" element={<Admin />} />
-						<Route path="/admin/login" element={<Login />} />
+						<Route path="/admin" element={isLoggedIn ? <Admin /> : <Login />} />
+						{/* <Route path="/admin/login" element={} /> */}
 					</Routes>
 					{isAdminPage ? null : <Footer />}
 				</BrowserRouter>

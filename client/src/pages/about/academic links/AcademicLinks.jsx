@@ -31,7 +31,7 @@ function AcademicLinks() {
 			<div className="links-cont">
 				{data.map((x) => {
 					return (
-						<div className="link-box">
+						<div className="link-box" key={x._id}>
 							<a href={x.link} target="_blank" rel="noreferrer">
 								{x.title}
 							</a>

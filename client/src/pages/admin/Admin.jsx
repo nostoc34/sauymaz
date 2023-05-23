@@ -1,26 +1,28 @@
-import React from "react";
-import { useEffect } from "react";
-import { useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import MainContext from "../../MainContext";
 import { useNavigate } from "react-router-dom";
 
 function Admin() {
-	const { setAdminPage, isLoggedIn } = useContext(MainContext);
+	const { setAdminPage, isLoggedIn, setLoggedIn } = useContext(MainContext);
 
 	const navigate = useNavigate();
-
-	useEffect(() => {
-		if (!isLoggedIn) {
-			navigate("/admin/login");
-		}
-	}, [isLoggedIn]);
 
 	useEffect(() => {
 		setAdminPage(true);
 	});
 
-    
-	return <div>Admin</div>;
+
+	return (
+		<div>
+			<button
+				onClick={() => {
+					setLoggedIn(false);
+				}}
+			>
+				Çıkış Yap
+			</button>
+		</div>
+	);
 }
 
 export default Admin;

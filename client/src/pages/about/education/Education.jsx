@@ -33,6 +33,7 @@ function Education() {
 				{data.map((x) => {
 					return (
 						<EduAcaFrame
+							key={x._id}
 							from={x.from}
 							to={x.to}
 							title={x.title}
