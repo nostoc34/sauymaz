@@ -1,0 +1,38 @@
+.weekly {
+	margin-bottom: 50px;
+	
+}
+
+.program-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .program {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .day {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .date-box {
+                padding: 15px;
+                border: 1px solid #000;
+                width: 100%;
+            }
+        }
+    }
+    .program-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .program-cont {
+        flex-direction: column;
+    }
+}

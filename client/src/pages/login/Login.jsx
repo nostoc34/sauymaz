@@ -2,25 +2,22 @@ import React, { useEffect, useContext, useState } from "react";
 import MainContext from "../../MainContext";
 import { Formik, Form, Field } from "formik";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import "./login.scss";
 
 function Login() {
-	const { setAdminPage, setLoggedIn, setToken, token } =
+	const { setAdminPage, setLoggedIn, setToken } =
 		useContext(MainContext);
 
 	useEffect(() => {
 		setAdminPage(true);
 	});
 
-	const navigate = useNavigate();
-
 	return (
 		<div className="login">
 			<div className="login-cont">
 				<div className="login-box frame">
 					<div className="login-title">
-						<h1>Giriş Yap</h1>
+						<h1>Admin Giriş</h1>
 					</div>
 					<div>
 						<Formik
@@ -51,6 +48,7 @@ function Login() {
 									<Field
 										name="name"
 										placeholder="Kullanıcı Adı"
+										autocomplete="off"
 									/>
 									<Field
 										name="password"

@@ -1,13 +1,17 @@
-.contact {
-    padding: 2% 11.5%;
-    background: #303030;
-    display: flex;
-    justify-content: center;
-    gap: 50px;
+.contact-cont {
+	padding: 2% 11.5%;
+	background: #303030;
+	.contact {
+		display: flex;
+		justify-content: center;
+		gap: 50px;
+	}
 }
 
 @media screen and (max-width: 1000px) {
-    .contact {
-        flex-direction: column;
-    }
+	.contact-cont {
+		.contact {
+			flex-direction: column;
+		}
+	}
 }

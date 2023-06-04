@@ -3,11 +3,12 @@ import asyncHandler from "express-async-handler";
 
 //POST
 export const newRegistry = asyncHandler(async (req, res) => {
-    const {title, to, index} = req.body;
+    const {title, to, index, stateCode} = req.body;
     const newEntry = new NavbarLink({
         title,
         to,
-        index
+        index,
+        stateCode,
     });
     await newEntry.save();
     res.status(200).json(newEntry);

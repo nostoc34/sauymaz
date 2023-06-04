@@ -14,16 +14,20 @@ export const newBlog = asyncHandler(async (req, res) => {
 	res.status(200).json(newPost);
 });
 
-//PUT
-export const updateBlog =  asyncHandler(async (req, res) => {
-	const blog = await Blog.findById(req.params.id);
-	if(!blog) {
-        res.status(400);
-        throw new Error("Blog not found!")
-    }
 
-	const updatedBlog = await Blog.findByIdAndUpdate(req.params.id, req.body, {new: true});
-    res.status(200).json(updatedBlog);
+
+//PUT
+export const updateBlog = asyncHandler(async (req, res) => {
+	const blog = await Blog.findById(req.params.id);
+	if (!blog) {
+		res.status(400);
+		throw new Error("Blog not found!");
+	}
+
+	const updatedBlog = await Blog.findByIdAndUpdate(req.params.id, req.body, {
+		new: true,
+	});
+	res.status(200).json(updatedBlog);
 });
 
 //GET
@@ -35,21 +39,21 @@ export const getAllBlogs = asyncHandler(async (req, res) => {
 //GET
 export const getBlog = asyncHandler(async (req, res) => {
 	const blog = await Blog.findById(req.params.id);
-	if(!blog) {
-        res.status(400);
-        throw new Error("Blog not found!")
-    }
+	if (!blog) {
+		res.status(400);
+		throw new Error("Blog not found!");
+	}
 	res.status(200).json(blog);
 });
 
 //DELETE
 export const deleteBlog = asyncHandler(async (req, res) => {
 	const blog = await Blog.findById(req.params.id);
-	if(!blog) {
-        res.status(400);
-        throw new Error("Blog not found!")
-    }
+	if (!blog) {
+		res.status(400);
+		throw new Error("Blog not found!");
+	}
 
 	await Blog.findByIdAndDelete(req.params.id);
-	res.status(200).json({id: req.params.id});
+	res.status(200).json({ id: req.params.id });
 });

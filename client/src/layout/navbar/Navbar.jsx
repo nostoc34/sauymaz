@@ -8,23 +8,38 @@ function Navbar() {
 
 	const { isCollapsed, setCollapsed } = useContext(MainContext);
 
-	const [data, setData] = useState([]);
+	const [linkData, setLinkData] = useState([]);
+	const [userData, setUserData] = useState([]);
 
-	const fetchData = () => {
+	const fetchLinkData = () => {
 		fetch("http://localhost:5000/api/navbar")
 			.then((response) => {
 				return response.json();
 			})
 			.then((APIData) => {
-				setData(APIData.sort((a, b) => a.index - b.index));
+				setLinkData(APIData.sort((a, b) => a.index - b.index));
 			})
 			.catch((error) => {
 				console.log(error);
 			});
 	};
 
+	const fetchUserData = () => {
+		fetch("http://localhost:5000/api/user")
+		.then((response) => {
+			return response.json();
+		})
+		.then((APIData) => {
+			setUserData(APIData.reverse());
+		})
+		.catch((err) => {
+			console.log(err);
+		})
+	}
+
 	useEffect(() => {
-		fetchData();
+		fetchLinkData();
+		fetchUserData();
 	}, []);
 
 	function handleClick() {
@@ -35,14 +50,14 @@ function Navbar() {
 		<div className="nav-container">
 			<div className="navbar">
 				<div className="logo">
-					<span>S</span>AİT <span>A</span>Lİ <span>U</span>YMAZ
+					{userData && userData.length ? userData[0].name : ""}
 				</div>
 				<div
 					className={`links ${
 						isCollapsed ? "links-collapsed" : "links-uncollapsed"
 					}`}
 				>
-					{data.map((x) => {
+					{linkData.map((x) => {
 						return (
 							<NavLink
 								key={x.index}

@@ -55,9 +55,9 @@ function Blog() {
 							<div>
 								<img
 									src={
-										x.picturePath
-											? `http://localhost:5000/assets/${x.picturePath}`
-											: "http://localhost:5000/assets/blog.jpg"
+										x.picturePath === "undefined"
+											? "http://localhost:5000/assets/blog.jpg"
+											: `http://localhost:5000/assets/${x.picturePath}`
 									}
 									alt="blog-pic"
 								/>

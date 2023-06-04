@@ -20,7 +20,6 @@ function Pagination() {
 
 	useEffect(() => {
 		fetchData();
-		console.log(data);
 	}, []);
 
 	const options = { day: "numeric", month: "long", year: "numeric" };
@@ -38,7 +37,7 @@ function Pagination() {
 							title={x.title}
 							date={publishDate}
 							content={x.content}
-							picturePath={x.picturePath ? `http://localhost:5000/assets/${x.picturePath}` : "http://localhost:5000/assets/duyuru.jpg"}
+							picturePath={x.picturePath === "undefined" ? "http://localhost:5000/assets/duyuru.jpg" : `http://localhost:5000/assets/${x.picturePath}`}
 						/>
 					);
 				})}

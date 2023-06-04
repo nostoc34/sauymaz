@@ -35,7 +35,7 @@ function Education() {
 						<EduAcaFrame
 							key={x._id}
 							from={x.from}
-							to={x.to}
+							to={x.to ? x.to : "-"}
 							title={x.title}
 							subtitle={x.subtitle}
 							major={x.major}

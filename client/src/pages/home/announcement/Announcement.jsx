@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./announcement.scss";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useState } from "react";
 
 function Announcement(props) {
 	const [open, setOpen] = useState(false);
@@ -47,7 +46,7 @@ function Announcement(props) {
 					aria-describedby="modal-modal-description"
 				>
 					<Box sx={style}>
-						<img style={{width: isMobile ? "200px" : "400px"}} src={props.picturePath} alt="duyuru-banner" />
+						<img className="announce-img" style={{width: isMobile ? "200px" : "400px"}} src={props.picturePath} alt="duyuru-banner" />
 						<Typography
 							id="modal-modal-title"
 							variant="h6"

@@ -1,0 +1,57 @@
+#admin-cont {
+	.admin-navbar {
+		padding: 2% 11.5%;
+		background: #303030;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		.admin-logo {
+			h3 {
+				color: #fff;
+				font-weight: 900;
+			}
+		}
+		.sections {
+			display: flex;
+			gap: 25px;
+			.section-item {
+				background: #fff;
+				padding: 5px 0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 150px;
+				border-radius: 20px;
+				cursor: pointer;
+			}
+		}
+	}
+	.admin-panel {
+		width: 100%;
+		padding: 3% 11.5%;
+		h2 {
+			color: #fff;
+		}
+		hr {
+			margin-bottom: 30px;
+		}
+		.admin-section {
+			width: 100%;
+			padding: 3% 0;
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			gap: 50px;
+			.admin-operation {
+				padding: 20px 15px;
+				background: #fff;
+				border-radius: 20px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 20px;
+				font-weight: 700;
+				cursor: pointer;
+			}
+		}
+	}
+}

@@ -32,7 +32,7 @@ function About() {
 			</div>
 			<div className="text">
 				{data.map((x) => {
-					return <> {x.content} </>;
+					return <div key={x._id}> {x.content} </div>;
 				})}
 			</div>
 		</div>

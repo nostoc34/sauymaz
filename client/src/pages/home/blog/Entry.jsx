@@ -24,7 +24,7 @@ function Entry(props) {
 				<p> {props.content} </p>
 			</div>
 			<div className="button">
-				<div onClick={handleButton} class={props.id} >Devamını oku... </div>
+				<div onClick={handleButton} className={props.id} >Devamını oku... </div>
 			</div>
 		</div>
 	);

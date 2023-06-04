@@ -30,12 +30,12 @@ const generateToken = (id) => {
 };
 
 export const registerAdmin = asyncHandler(async(req, res) => {
-    const password = "123456";
+    const password = "";
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const admin = new Admin({
-        name: "nostoc",
+        name: "",
         password: hashedPassword,
     });
     admin.save();

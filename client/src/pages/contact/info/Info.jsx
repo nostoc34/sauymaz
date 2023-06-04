@@ -24,7 +24,6 @@ function Info() {
 
 	useEffect(() => {
 		fetchData();
-		console.log(data);
 	}, []);
 
 	return (
