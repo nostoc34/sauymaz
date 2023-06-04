@@ -76,6 +76,16 @@ function About() {
 		fetchAcaLinkData();
 	}, []);
 
+	useEffect(() => {
+		fetchEduData();
+	}, [eduData]);
+	useEffect(() => {
+		fetchAcaPastData();
+	}, [acaPastData]);
+	useEffect(() => {
+		fetchAcaLinkData();
+	}, [acaLinkData]);
+
 	const style = {
 		position: "absolute",
 		top: "50%",
@@ -248,6 +258,13 @@ function About() {
 					aria-describedby="modal-modal-description"
 				>
 					<Box sx={style}>
+						<Typography
+							id="modal-modal-title"
+							variant="h6"
+							component="h2"
+						>
+							Yeni Eğitim Bilgisi Kaydı
+						</Typography>
 						<Formik
 							onSubmit={(values, onSubmitProps) => {
 								axios
@@ -353,6 +370,13 @@ function About() {
 					aria-describedby="modal-modal-description"
 				>
 					<Box sx={style}>
+						<Typography
+							id="modal-modal-title"
+							variant="h6"
+							component="h2"
+						>
+							Eğitim Bilgisi Kaydı Güncelle
+						</Typography>
 						{eduData.map((x) => {
 							return (
 								<EduAcaFrame
@@ -389,6 +413,13 @@ function About() {
 					aria-describedby="modal-modal-description"
 				>
 					<Box sx={style}>
+						<Typography
+							id="modal-modal-title"
+							variant="h6"
+							component="h2"
+						>
+							Yeni Akademik Geçmiş Kaydı
+						</Typography>
 						<Formik
 							onSubmit={(values, onSubmitProps) => {
 								axios
@@ -494,6 +525,13 @@ function About() {
 					aria-describedby="modal-modal-description"
 				>
 					<Box sx={style}>
+						<Typography
+							id="modal-modal-title"
+							variant="h6"
+							component="h2"
+						>
+							Akademik Geçmiş Kaydı Güncelle
+						</Typography>
 						{acaPastData.map((x) => {
 							return (
 								<EduAcaFrame
@@ -530,6 +568,13 @@ function About() {
 					aria-describedby="modal-modal-description"
 				>
 					<Box sx={style}>
+						<Typography
+							id="modal-modal-title"
+							variant="h6"
+							component="h2"
+						>
+							Yeni Akademik Link
+						</Typography>
 						<Formik
 							onSubmit={(values, onSubmitProps) => {
 								axios
@@ -608,6 +653,13 @@ function About() {
 					aria-describedby="modal-modal-description"
 				>
 					<Box sx={style}>
+						<Typography
+							id="modal-modal-title"
+							variant="h6"
+							component="h2"
+						>
+							Akademik Link Güncelle-Sil
+						</Typography>
 						{acaLinkData.map((x) => {
 							return (
 								<AcaLinkFrame

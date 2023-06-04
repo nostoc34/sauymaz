@@ -28,7 +28,7 @@ function Blog() {
 
 	useEffect(() => {
 		fetchBlogData();
-	}, []);
+	}, [blogData]);
 
 	const [open, setOpen] = useState({
 		newBlog: false,
@@ -99,7 +99,7 @@ function Blog() {
 							variant="h6"
 							component="h2"
 						>
-							Yeni Duyuru
+							Yeni Blog
 						</Typography>
 						<Formik
 							onSubmit={newBlogSubmit}
@@ -207,6 +207,24 @@ function Blog() {
 									id={x._id}
 									title={x.title}
 									content={x.content}
+									delete={() => {
+										axios
+											.delete(
+												`http://localhost:5000/api/blog/${x._id}`,
+												{
+													headers: {
+														Authorization:
+															"Bearer " + token,
+													},
+												}
+											)
+											.then((res) => {
+												console.log(res.status);
+											})
+											.catch((err) => {
+												console.log(err);
+											});
+									}}
 								/>
 							);
 						})}

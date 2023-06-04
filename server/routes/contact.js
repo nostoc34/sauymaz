@@ -5,6 +5,6 @@ import { protect } from "../middlewares/auth.js";
 const router = express.Router();
 
 router.get("/", getContact);
-router.put("/", protect, updateContact);
+router.put("/:id", protect, updateContact);
 
 export default router;

@@ -60,6 +60,9 @@ function Home() {
 		fetchProfileData();
 		fetchAnnounceData();
 	}, []);
+	useEffect(() => {
+		fetchAnnounceData();
+	}, [announceData]);
 
 	const profileFormSubmit = async (values, onSubmitProps) => {
 		const formData = new FormData();
@@ -133,6 +136,7 @@ function Home() {
 	};
 	return (
 		<div className="admin-home admin-section">
+
 			<div
 				className="admin-home-item admin-operation"
 				onClick={() => {
@@ -151,6 +155,13 @@ function Home() {
 					aria-describedby="modal-modal-description"
 				>
 					<Box sx={style}>
+						<Typography
+							id="modal-modal-title"
+							variant="h6"
+							component="h2"
+						>
+							Yeni Kullanıcı
+						</Typography>
 						<Formik
 							onSubmit={(values, onSubmitProps) => {
 								axios
@@ -590,6 +601,7 @@ function Home() {
 					</Box>
 				</Modal>
 			</div>
+			
 		</div>
 	);
 }
