@@ -4,7 +4,8 @@ const navbarLinkSchema = mongoose.Schema({
     title: String,
 	to: String,
     index: Number,
-    stateCode: String,
+    isActive: String,
+    element: String,
 });
 
 const NavbarLink = mongoose.model("NavbarLink", navbarLinkSchema);

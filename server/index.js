@@ -26,6 +26,7 @@ import academicLinkRoutes from "./routes/academicLink.js";
 import navbarLinkRoutes from "./routes/navbarLink.js";
 import programRoutes from "./routes/program.js";
 import userRoutes from "./routes/user.js";
+import appointmentRoutes from "./routes/appointment.js";
 
 // import HomeProfile from "./server/models/homeProfile.js";
 
@@ -75,6 +76,7 @@ app.use("/api/academic-link", academicLinkRoutes);
 app.use("/api/navbar", navbarLinkRoutes);
 app.use("/api/program", programRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/appointment", appointmentRoutes);
 
 
 

@@ -11,35 +11,29 @@ import InnerBlog from "./pages/blog/inner blog/InnerBlog";
 import Contact from "./pages/contact/Contact";
 import Admin from "./pages/admin/Admin";
 import Login from "./pages/login/Login";
+import NotFound from "./layout/404/NotFound";
 
 function App() {
 	const [isAdminPage, setAdminPage] = useState(false);
 	const [isLoggedIn, setLoggedIn] = useState(false);
 	const [isCollapsed, setCollapsed] = useState(false);
 	const [token, setToken] = useState("");
-	const [activeLink, setActiveLink] = useState({
-		home: true,
-		about: true,
-		blog: true,
-		contact: true,
-	});
 
 	useEffect(() => {
-		const logdata = window.localStorage.getItem('loggedIn');
-		if ( logdata !== null ) setLoggedIn(JSON.parse(logdata));
-	  }, []);
+		const logdata = window.localStorage.getItem("loggedIn");
+		if (logdata !== null) setLoggedIn(JSON.parse(logdata));
+	}, []);
 	useEffect(() => {
 		localStorage.setItem("loggedIn", JSON.stringify(isLoggedIn));
 	}, [isLoggedIn]);
 
 	useEffect(() => {
-		const tokendata = window.localStorage.getItem('token');
-		if ( tokendata !== null ) setToken(JSON.parse(tokendata));
-	  }, []);
+		const tokendata = window.localStorage.getItem("token");
+		if (tokendata !== null) setToken(JSON.parse(tokendata));
+	}, []);
 	useEffect(() => {
 		localStorage.setItem("token", JSON.stringify(token));
 	}, [token]);
-	
 
 	const data = {
 		setAdminPage,
@@ -49,8 +43,6 @@ function App() {
 		setCollapsed,
 		token,
 		setToken,
-		activeLink,
-		setActiveLink
 	};
 
 	return (
@@ -59,12 +51,16 @@ function App() {
 				<BrowserRouter>
 					{isAdminPage ? null : <Navbar />}
 					<Routes>
+						<Route path="/*" element={<NotFound />} />
 						<Route path="/" element={<Home />} />
 						<Route path="/hakkimda" element={<About />} />
 						<Route path="/blog" element={<Blog />} />
-						<Route path="/blog/:id" element={<InnerBlog />} />
 						<Route path="/iletisim" element={<Contact />} />
-						<Route path="/admin" element={isLoggedIn ? <Admin /> : <Login />} />						
+						<Route path="/blog/:id" element={<InnerBlog />} />
+						<Route
+							path="/admin"
+							element={isLoggedIn ? <Admin /> : <Login />}
+						/>
 					</Routes>
 					{isAdminPage ? null : <Footer />}
 				</BrowserRouter>

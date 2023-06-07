@@ -93,6 +93,7 @@ function Home() {
 			formData.append(value, values[value]);
 		}
 		formData.append("picturePath", values.picture.name);
+		console.log(formData);
 		axios
 			.post("http://localhost:5000/api/announcement", formData, {
 				headers: {
@@ -315,7 +316,7 @@ function Home() {
 						>
 							Navbar
 						</Typography>
-						{/* <NavbarLinks /> */}
+						<NavbarLinks />
 					</Box>
 				</Modal>
 			</div>

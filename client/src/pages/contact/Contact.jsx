@@ -16,7 +16,7 @@ function Contact() {
 		<div>
 			<Header header="İLETİŞİM" />
 			<div className="contact-cont">
-				{/* <Weekly /> */}
+				<Weekly />
 				<div className="contact">
 					<MailForm />
 					<Info />

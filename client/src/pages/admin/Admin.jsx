@@ -13,7 +13,6 @@ function Admin() {
 		setAdminPage(true);
 	});
 
-	const [section, setSection] = useState("home");
 
 	return (
 		<div id="admin-cont">

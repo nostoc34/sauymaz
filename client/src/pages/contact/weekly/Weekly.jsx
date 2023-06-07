@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import MainContext from "../../../MainContext";
 import "./weekly.scss";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
+import { Formik, Field } from "formik";
 // import useMediaQuery from "@mui/material/useMediaQuery";
-import { Form, Formik, Field, useFormik } from "formik";
 import axios from "axios";
+import { values } from "lodash";
 
 function Weekly() {
 	const [data, setData] = useState([]);
+	const { token } = useContext(MainContext);
 
 	const fetchData = () => {
 		fetch("http://localhost:5000/api/program")
@@ -48,19 +51,29 @@ function Weekly() {
 		boxShadow: 24,
 		p: 4,
 	};
-	const [targetID, setTargetID] = useState("");
-	
-	useEffect(() => {
-		for (var i = 0; i < document.getElementsByTagName("input").length; i++) {
-			if (document.getElementsByTagName("input")[i].checked === true) {
-				setTargetID(document.getElementsByTagName("input")[i].id);
-			}
-		}
-	},)
+
+	const handleFormSubmit = async (values) => {
+		console.log(values);
+		// fetch("http://localhost:5000/api/appointment", {
+		// 	method: "POST",
+		// 	body: values,
+		// 	headers: {
+		// 		Authorization: "Bearer " + token,
+		// 	},
+		// })
+		// 	.then((res) => {
+		// 		console.log(res.status);
+		// 	})
+		// 	.catch((err) => {
+		// 		console.log(err);
+		// 	});
+	};
+
+	const [day, setDay] = useState("Gün");
 
 	return (
 		<div className="frame weekly" onClick={handleOpen}>
-			<h1>deneme </h1>
+			<h1>Haftalık Program ve Randevu</h1>
 			<Modal
 				open={open}
 				onClose={handleClose}
@@ -68,743 +81,247 @@ function Weekly() {
 				aria-describedby="modal-modal-description"
 			>
 				<Box sx={style}>
-					<Formik
-						initialValues={{
-							firstname: "",
-							lastname: "",
-							email: "",
-							date: "",
-							[targetID]: "",
-						}}
-						onSubmit={(values) => {
-							console.log(values);
-						}}
-					>
-						{(props) => (
-							<div>
-								<Form>
-									<div className="program-cont">
-										<div className="program">
-											<div className="monday day">
-												<div className="date-box">
-													Pazartesi
+					{data.map((x) => {
+						return (
+							<div key={x._id}>
+								<Formik
+									onSubmit={handleFormSubmit}
+									initialValues={{
+										firstname: "",
+										lastname: "",
+										email: "",
+										date: "",
+										day: day,
+									}}
+								>
+									{({
+										values,
+										handleBlur,
+										handleChange,
+										handleSubmit,
+									}) => (
+										<form
+											onSubmit={handleSubmit}
+											id="program-form"
+										>
+											<div className="program-day">
+												<h3>Pazartesi</h3>
+												<div className="day-piece">
+													{" "}
+													{x.monAm1Title ? (
+														<div>
+															<div>
+																{" "}
+																{
+																	x.monAm1Title
+																}{" "}
+															</div>{" "}
+															<div>
+																{" "}
+																{
+																	x.monAm1Time
+																}{" "}
+															</div>
+															<label>
+																<Field
+																	type="radio"
+																	name="time"
+																	value={
+																		x.monAm1Time
+																	}
+																/>
+															</label>
+														</div>
+													) : (
+														"Dolu"
+													)}{" "}
 												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															id="monAm1"
-															value={
-																data &&
-																data[0].monAm1
-																	? data[0]
-																			.monAm1
-																	: "Dolu"
-															}
-															disabled={
-																!data[0].monAm1
-															}
-														/>
-														{data && data[0].monAm1
-															? data[0].monAm1
-															: "Dolu"}
-													</label>
+												<div className="day-piece">
+													{" "}
+													{x.monAm2Title ? (
+														<div>
+															<div>
+																{" "}
+																{
+																	x.monAm2Title
+																}{" "}
+															</div>{" "}
+															<div>
+																{" "}
+																{
+																	x.monAm2Time
+																}{" "}
+															</div>
+															<label>
+																<Field
+																	type="radio"
+																	name="date"
+																	value={
+																		x.monAm2Time
+																	}
+																/>
+															</label>
+														</div>
+													) : (
+														"Dolu"
+													)}{" "}
 												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															id="monAm"
-															value={
-																data &&
-																data[0].monAm2
-																	? data[0]
-																			.monAm2
-																	: "Dolu"
-															}
-															disabled={
-																!data[0].monAm2
-															}
-														/>
-														{data && data[0].monAm2
-															? data[0].monAm2
-															: "Dolu"}
-													</label>
+												<div className="day-piece">
+													{" "}
+													{x.monAm3Title ? (
+														<div>
+															<div>
+																{" "}
+																{
+																	x.monAm3Title
+																}{" "}
+															</div>{" "}
+															<div>
+																{" "}
+																{
+																	x.monAm3Time
+																}{" "}
+															</div>
+															<label>
+																<Field
+																	type="radio"
+																	name="date"
+																	value={
+																		x.monAm3Time
+																	}
+																/>
+															</label>
+														</div>
+													) : (
+														"Dolu"
+													)}{" "}
 												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															id="monAm3"
-															value={
-																data &&
-																data[0].monAm3
-																	? data[0]
-																			.monAm3
-																	: "Dolu"
-															}
-															disabled={
-																!data[0].monAm3
-															}
-														/>
-														{data && data[0].monAm3
-															? data[0].monAm3
-															: "Dolu"}
-													</label>
+												<div className="day-piece">
+													{" "}
+													{x.monPm1Title ? (
+														<div>
+															<div>
+																{" "}
+																{
+																	x.monPm1Title
+																}{" "}
+															</div>{" "}
+															<div>
+																{" "}
+																{
+																	x.monPm1Time
+																}{" "}
+															</div>
+															<label>
+																<Field
+																	type="radio"
+																	name="date"
+																	value={
+																		x.monPm1Time
+																	}
+																/>
+															</label>
+														</div>
+													) : (
+														"Dolu"
+													)}{" "}
 												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															id="monPm1"
-															value={
-																data &&
-																data[0].monPm1
-																	? data[0]
-																			.monPm1
-																	: "Dolu"
-															}
-															disabled={
-																!data[0].monPm1
-															}
-														/>
-														{data && data[0].monPm1
-															? data[0].monPm1
-															: "Dolu"}
-													</label>
+												<div className="day-piece">
+													{" "}
+													{x.monPm2Title ? (
+														<div>
+															<div>
+																{" "}
+																{
+																	x.monPm2Title
+																}{" "}
+															</div>{" "}
+															<div>
+																{" "}
+																{
+																	x.monPm2Time
+																}{" "}
+															</div>
+															<label>
+																<Field
+																	type="radio"
+																	name="date"
+																	value={
+																		x.monPm2Time
+																	}
+																/>
+															</label>
+														</div>
+													) : (
+														"Dolu"
+													)}{" "}
 												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															id="monPm2"
-															value={
-																data &&
-																data[0].monPm2
-																	? data[0]
-																			.monPm2
-																	: "Dolu"
-															}
-															disabled={
-																!data[0].monPm2
-															}
-														/>
-														{data && data[0].monPm2
-															? data[0].monPm2
-															: "Dolu"}
-													</label>
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															id="monPm3"
-															value={
-																data &&
-																data[0].monPm3
-																	? data[0]
-																			.monPm3
-																	: "Dolu"
-															}
-															disabled={
-																!data[0].monPm3
-															}
-														/>
-														{data && data[0].monPm3
-															? data[0].monPm3
-															: "Dolu"}
-													</label>
-												</div>
-											</div>
-											<div className="tuesday day">
-												<div className="date-box">
-													Salı
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															value={
-																data &&
-																data[0].tuesAm1
-																	? data[0]
-																			.tuesAm1
-																	: "Dolu"
-															}
-															disabled={
-																!data[0].tuesAm1
-															}
-														/>
-														{data && data[0].tuesAm1
-															? data[0].tuesAm1
-															: "Dolu"}
-													</label>
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															value={
-																data &&
-																data[0].tuesAm2
-																	? data[0]
-																			.tuesAm2
-																	: "Dolu"
-															}
-															disabled={
-																!data[0].tuesAm2
-															}
-														/>
-														{data && data[0].tuesAm2
-															? data[0].tuesAm2
-															: "Dolu"}
-													</label>
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															value={
-																data &&
-																data[0].tuesAm3
-																	? data[0]
-																			.tuesAm3
-																	: "Dolu"
-															}
-															disabled={
-																!data[0].tuesAm3
-															}
-														/>
-														{data && data[0].tuesAm3
-															? data[0].tuesAm3
-															: "Dolu"}
-													</label>
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															value={
-																data &&
-																data[0].tuesPm1
-																	? data[0]
-																			.tuesPm1
-																	: "Dolu"
-															}
-															disabled={
-																!data[0].tuesPm1
-															}
-														/>
-														{data && data[0].tuesPm1
-															? data[0].tuesPm1
-															: "Dolu"}
-													</label>
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															value={
-																data &&
-																data[0].tuesPm2
-																	? data[0]
-																			.tuesPm2
-																	: "Dolu"
-															}
-															disabled={
-																!data[0].tuesPm2
-															}
-														/>
-														{data && data[0].tuesPm2
-															? data[0].tuesPm2
-															: "Dolu"}
-													</label>
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															value={
-																data &&
-																data[0].tuesPm3
-																	? data[0]
-																			.tuesPm3
-																	: "Dolu"
-															}
-															disabled={
-																!data[0].tuesPm3
-															}
-														/>
-														{data && data[0].tuesPm3
-															? data[0].tuesPm3
-															: "Dolu"}
-													</label>
+												<div className="day-piece">
+													{" "}
+													{x.monPm3Title ? (
+														<div>
+															<div>
+																{" "}
+																{
+																	x.monPm3Title
+																}{" "}
+															</div>{" "}
+															<div>
+																{" "}
+																{
+																	x.monPm3Time
+																}{" "}
+															</div>
+															<label>
+																<Field
+																	type="radio"
+																	name="date"
+																	value={
+																		x.monPm3Time
+																	}
+																	onClick={() => {
+																		setDay("Pazartesi");
+																	}}
+																/>
+															</label>
+														</div>
+													) : (
+														"Dolu"
+													)}{" "}
 												</div>
 											</div>
-											<div className="wednesday day">
-												<div className="date-box">
-													Çarşamba
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															value={
-																data &&
-																data[0]
-																	.wednesAm1
-																	? data[0]
-																			.wednesAm1
-																	: "Dolu"
-															}
-															disabled={
-																!data[0]
-																	.wednesAm1
-															}
-														/>
-														{data &&
-														data[0].wednesAm1
-															? data[0].wednesAm1
-															: "Dolu"}
-													</label>
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															value={
-																data &&
-																data[0]
-																	.wednesAm2
-																	? data[0]
-																			.wednesAm2
-																	: "Dolu"
-															}
-															disabled={
-																!data[0]
-																	.wednesAm2
-															}
-														/>
-														{data &&
-														data[0].wednesAm2
-															? data[0].wednesAm2
-															: "Dolu"}
-													</label>
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															value={
-																data &&
-																data[0]
-																	.wednesAm3
-																	? data[0]
-																			.wednesAm3
-																	: "Dolu"
-															}
-															disabled={
-																!data[0]
-																	.wednesAm3
-															}
-														/>
-														{data &&
-														data[0].wednesAm3
-															? data[0].wednesAm3
-															: "Dolu"}
-													</label>
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															value={
-																data &&
-																data[0]
-																	.wednesPm1
-																	? data[0]
-																			.wednesPm1
-																	: "Dolu"
-															}
-															disabled={
-																!data[0]
-																	.wednesPm1
-															}
-														/>
-														{data &&
-														data[0].wednesPm1
-															? data[0].wednesPm1
-															: "Dolu"}
-													</label>
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															value={
-																data &&
-																data[0]
-																	.wednesPm2
-																	? data[0]
-																			.wednesPm2
-																	: "Dolu"
-															}
-															disabled={
-																!data[0]
-																	.wednesPm2
-															}
-														/>
-														{data &&
-														data[0].wednesPm2
-															? data[0].wednesPm2
-															: "Dolu"}
-													</label>
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															value={
-																data &&
-																data[0]
-																	.wednesPm3
-																	? data[0]
-																			.wednesPm3
-																	: "Dolu"
-															}
-															disabled={
-																!data[0]
-																	.wednesPm3
-															}
-														/>
-														{data &&
-														data[0].wednesPm3
-															? data[0].wednesPm3
-															: "Dolu"}
-													</label>
-												</div>
+											<div>
+												<Field
+													name="firstname"
+													placeholder="Ad"
+													onChange={handleChange}
+												/>
+												<Field
+													name="lastname"
+													placeholder="Soyad"
+													onChange={handleChange}
+												/>
+												<Field
+													type="email"
+													name="email"
+													placeholder="Email"
+													onChange={handleChange}
+												/>
+												<Field
+													id="day"
+													name="day"
+													value = {day}
+												/>
 											</div>
-											<div className="thursday day">
-												<div className="date-box">
-													Perşembe
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															value={
-																data &&
-																data[0].thursAm1
-																	? data[0]
-																			.thursAm1
-																	: "Dolu"
-															}
-															disabled={
-																!data[0]
-																	.thursAm1
-															}
-														/>
-														{data &&
-														data[0].thursAm1
-															? data[0].thursAm1
-															: "Dolu"}
-													</label>
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															value={
-																data &&
-																data[0].thursAm2
-																	? data[0]
-																			.thursAm2
-																	: "Dolu"
-															}
-															disabled={
-																!data[0]
-																	.thursAm2
-															}
-														/>
-														{data &&
-														data[0].thursAm2
-															? data[0].thursAm2
-															: "Dolu"}
-													</label>
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															value={
-																data &&
-																data[0].thursAm3
-																	? data[0]
-																			.thursAm3
-																	: "Dolu"
-															}
-															disabled={
-																!data[0]
-																	.thursAm3
-															}
-														/>
-														{data &&
-														data[0].thursAm3
-															? data[0].thursAm3
-															: "Dolu"}
-													</label>
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															value={
-																data &&
-																data[0].thursPm1
-																	? data[0]
-																			.thursPm1
-																	: "Dolu"
-															}
-															disabled={
-																!data[0]
-																	.thursPm1
-															}
-														/>
-														{data &&
-														data[0].thursPm1
-															? data[0].thursPm1
-															: "Dolu"}
-													</label>
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															value={
-																data &&
-																data[0].thursPm2
-																	? data[0]
-																			.thursPm2
-																	: "Dolu"
-															}
-															disabled={
-																!data[0]
-																	.thursPm2
-															}
-														/>
-														{data &&
-														data[0].thursPm2
-															? data[0].thursPm2
-															: "Dolu"}
-													</label>
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															value={
-																data &&
-																data[0].thursPm3
-																	? data[0]
-																			.thursPm3
-																	: "Dolu"
-															}
-															disabled={
-																!data[0]
-																	.thursPm3
-															}
-														/>
-														{data &&
-														data[0].thursPm3
-															? data[0].thursPm3
-															: "Dolu"}
-													</label>
-												</div>
-											</div>
-											<div className="friday day">
-												<div className="date-box">
-													Cuma
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															value={
-																data &&
-																data[0].friAm1
-																	? data[0]
-																			.friAm1
-																	: "Dolu"
-															}
-															disabled={
-																!data[0].friAm1
-															}
-														/>
-														{data && data[0].friAm1
-															? data[0].friAm1
-															: "Dolu"}
-													</label>
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															value={
-																data &&
-																data[0].friAm2
-																	? data[0]
-																			.friAm2
-																	: "Dolu"
-															}
-															disabled={
-																!data[0].friAm2
-															}
-														/>
-														{data && data[0].friAm2
-															? data[0].friAm2
-															: "Dolu"}
-													</label>
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															value={
-																data &&
-																data[0].friAm3
-																	? data[0]
-																			.friAm3
-																	: "Dolu"
-															}
-															disabled={
-																!data[0].friAm3
-															}
-														/>
-														{data && data[0].friAm3
-															? data[0].friAm3
-															: "Dolu"}
-													</label>
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															value={
-																data &&
-																data[0].friPm1
-																	? data[0]
-																			.friPm1
-																	: "Dolu"
-															}
-															disabled={
-																!data[0].friPm1
-															}
-														/>
-														{data && data[0].friPm1
-															? data[0].friPm1
-															: "Dolu"}
-													</label>
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															value={
-																data &&
-																data[0].friPm2
-																	? data[0]
-																			.friPm2
-																	: "Dolu"
-															}
-															disabled={
-																!data[0].friPm2
-															}
-														/>
-														{data && data[0].friPm2
-															? data[0].friPm2
-															: "Dolu"}
-													</label>
-												</div>
-												<div className="date-box">
-													<label>
-														<Field
-															type="radio"
-															name="date"
-															value={
-																data &&
-																data[0].friPm3
-																	? data[0]
-																			.friPm3
-																	: "Dolu"
-															}
-															disabled={
-																!data[0].friPm3
-															}
-														/>
-														{data && data[0].friPm3
-															? data[0].friPm3
-															: "Dolu"}
-													</label>
-												</div>
-											</div>
-										</div>
-										<div className="program-form">
-											<Field
-												name="firstname"
-												placeholder="Ad"
-											/>
-											<Field
-												name="lastname"
-												placeholder="Soyad"
-											/>
-											<Field
-												type="email"
-												name="email"
-												placeholder="Email"
-											/>
-											<Field
-												name={targetID}
-												style={{ display: "none" }}
-												value=""
-											/>
 											<button type="submit">
-												Gönder
+												Güncelle
 											</button>
-										</div>
-									</div>
-								</Form>
+										</form>
+									)}
+								</Formik>
 							</div>
-						)}
-					</Formik>
+						);
+					})}
 				</Box>
 			</Modal>
 		</div>

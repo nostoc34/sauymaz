@@ -7,14 +7,12 @@
 		background: #4d4d4d;
 		display: flex;
 		.logo {
-			font-size: 34px;
-			line-height: 150%;
-			font-weight: 500;
-			background: #4d4d4d;
-			color: #fff;
-			span {
-				font-size: 48px;
+			a {
+				font-size: 34px;
+				line-height: 150%;
+				font-weight: 500;
 				background: #4d4d4d;
+				color: #fff;
 			}
 		}
 		.links {
@@ -79,7 +77,7 @@
 				a {
 					margin-left: 0;
 				}
-				a:not(:last-child) {					
+				a:not(:last-child) {
 					margin-bottom: 10px;
 				}
 			}

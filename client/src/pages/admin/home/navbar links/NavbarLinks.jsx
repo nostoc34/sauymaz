@@ -1,18 +1,19 @@
 import React, { useState, useEffect, useContext } from "react";
 import MainContext from "../../../../MainContext";
 import axios from "axios";
+import { Formik, Field } from "formik";
 
 function NavbarLinks() {
-	const { token, activeLink, setActiveLink } = useContext(MainContext);
-	const [navbarData, setNavbarData] = useState([]);
+	const { token } = useContext(MainContext);
 
+	const [navbarData, setNavbarData] = useState([]);
 	const fetchNavbarData = () => {
 		fetch("http://localhost:5000/api/navbar")
 			.then((res) => {
 				return res.json();
 			})
 			.then((APIData) => {
-				setNavbarData(APIData.sort((a, b) => a.index - b.index));
+				setNavbarData(APIData);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -21,100 +22,105 @@ function NavbarLinks() {
 
 	useEffect(() => {
 		fetchNavbarData();
-	});
+	}, [navbarData]);
+
 	return (
 		<div>
-			<div className="handle-navbar-item">
-				<div>
-					Anasayfa
-				</div>
-				<div>Aktif</div>
-				<div
-					style={{ background: activeLink.home ? "white" : "red" }}
-					onClick={() => {
-						setActiveLink({ ...activeLink, home: false });
-						axios.delete(
-							`http://localhost:5000/api/navbar/${navbarData[0]._id}`,
-							{
-								headers: {
-									Authorization: "Bearer " + token,
-								},
-							}
-						);
-					}}
-				>
-					Pasif
-				</div>
-			</div>
+			{navbarData.map((x) => {
+				return (
+					<div key={x._id} style={{background: x.isActive === "true" ? "green" : "red"}}>
+						{x.title}
+						<Formik
+							onSubmit={(values) => {
+								axios
+									.put(
+										`http://localhost:5000/api/navbar/${x._id}`,
+										values,
+										{
+											headers: {
+												Authorization:
+													"Bearer " + token,
+											},
+										}
+									)
+									.then(function (res) {
+										console.log(res.status);
+									})
+									.catch(function (error) {
+										console.log(error);
+									});
+							}}
+							initialValues={{
+								isActive: "true",
+							}}
+						>
+							{({
+								values,
+								handleBlur,
+								handleChange,
+								handleSubmit,
+							}) => (
+								<form onSubmit={handleSubmit}>
+									<Field
+										style={{display: "none"}}
+										onBlur={handleBlur}
+										onChange={handleChange}
+										value={values.isActive}
+										name="isActive"
+										autocomplete="off"
+									/>
 
-			<div className="handle-navbar-item">
-				<div>
-					Hakkımda
-				</div>
-				<div>Aktif</div>
-				<div
-					style={{ background: activeLink.about ? "white" : "red" }}
-					onClick={() => {
-						setActiveLink({ ...activeLink, about: false });
-						axios.delete(
-							`http://localhost:5000/api/navbar/${navbarData[1]._id}`,
-							{
-								headers: {
-									Authorization: "Bearer " + token,
-								},
-							}
-						);
-					}}
-				>
-					Pasif
-				</div>
-			</div>
+									<button type="submit">Aktif</button>
+								</form>
+							)}
+						</Formik>
+						<Formik
+							onSubmit={(values) => {
+								axios
+									.put(
+										`http://localhost:5000/api/navbar/${x._id}`,
+										values,
+										{
+											headers: {
+												Authorization:
+													"Bearer " + token,
+											},
+										}
+									)
+									.then(function (res) {
+										console.log(res.status);
+									})
+									.catch(function (error) {
+										console.log(error);
+									});
+							}}
+							initialValues={{
+								isActive: "false",
+							}}
+						>
+							{({
+								values,
+								handleBlur,
+								handleChange,
+								handleSubmit,
+							}) => (
+								<form onSubmit={handleSubmit}>
+									<Field
+										style={{display: "none"}}
+										onBlur={handleBlur}
+										onChange={handleChange}
+										value={values.isActive}
+										name="isActive"
+										autocomplete="off"
+									/>
 
-			<div className="handle-navbar-item">
-				<div>
-					Blog
-				</div>
-				<div>Aktif</div>
-				<div
-					style={{ background: activeLink.blog ? "white" : "red" }}
-					onClick={() => {
-						setActiveLink({ ...activeLink, blog: false });
-						axios.delete(
-							`http://localhost:5000/api/navbar/${navbarData[2]._id}`,
-							{
-								headers: {
-									Authorization: "Bearer " + token,
-								},
-							}
-						);
-					}}
-				>
-					Pasif
-				</div>
-			</div>
-
-			<div className="handle-navbar-item">
-				<div>
-					İletişim
-				</div>
-				<div>Aktif</div>
-				<div
-					style={{ background: activeLink.contact ? "white" : "red" }}
-					onClick={() => {
-						setActiveLink({ ...activeLink, contact: false });
-						axios.delete(
-							`http://localhost:5000/api/navbar/${navbarData[3]._id}`,
-							{
-								headers: {
-									Authorization: "Bearer " + token,
-								},
-							}
-						);
-					}}
-				>
-					Pasif
-				</div>
-			</div>
+									<button type="submit">Pasif</button>
+								</form>
+							)}
+						</Formik>
+					</div>
+				);
+			})}
 		</div>
 	);
 }

@@ -5,6 +5,7 @@ const appointmentSchema = mongoose.Schema({
     lastname: String,
     email: String,
     date: String,
+    day: String,
 });
 
 const Appointment = mongoose.model("Appointment", appointmentSchema);

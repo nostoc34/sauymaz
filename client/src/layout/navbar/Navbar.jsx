@@ -5,8 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import MainContext from "../../MainContext";
 
 function Navbar() {
-
-	const { isCollapsed, setCollapsed } = useContext(MainContext);
+	const { isCollapsed, setCollapsed, links } = useContext(MainContext);
 
 	const [linkData, setLinkData] = useState([]);
 	const [userData, setUserData] = useState([]);
@@ -26,16 +25,16 @@ function Navbar() {
 
 	const fetchUserData = () => {
 		fetch("http://localhost:5000/api/user")
-		.then((response) => {
-			return response.json();
-		})
-		.then((APIData) => {
-			setUserData(APIData.reverse());
-		})
-		.catch((err) => {
-			console.log(err);
-		})
-	}
+			.then((response) => {
+				return response.json();
+			})
+			.then((APIData) => {
+				setUserData(APIData.reverse());
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
 
 	useEffect(() => {
 		fetchLinkData();
@@ -50,7 +49,7 @@ function Navbar() {
 		<div className="nav-container">
 			<div className="navbar">
 				<div className="logo">
-					{userData && userData.length ? userData[0].name : ""}
+					<NavLink to="/">{userData && userData.length ? userData[0].name : ""}</NavLink>
 				</div>
 				<div
 					className={`links ${
@@ -58,7 +57,7 @@ function Navbar() {
 					}`}
 				>
 					{linkData.map((x) => {
-						return (
+						return x.isActive === "true" ? (
 							<NavLink
 								key={x.index}
 								to={x.to}
@@ -68,7 +67,7 @@ function Navbar() {
 							>
 								<div className="link">{x.title}</div>
 							</NavLink>
-						);
+						) : null;
 					})}
 				</div>
 				<div className="hamb-menu" onClick={handleClick}>

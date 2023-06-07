@@ -225,6 +225,38 @@ function Blog() {
 												console.log(err);
 											});
 									}}
+									update={async (values, onSubmitProps) => {
+										const formData = new FormData();
+										for (let value in values) {
+											formData.append(
+												value,
+												values[value]
+											);
+										}
+										if (values.picture) {
+											formData.append(
+												"picturePath",
+												values.picture.name
+											);
+										}
+										axios
+											.put(
+												`http://localhost:5000/api/blog/${x._id}`,
+												formData,
+												{
+													headers: {
+														Authorization:
+															"Bearer " + token,
+													},
+												}
+											)
+											.then((res) => {
+												console.log(res.status);
+											})
+											.catch((err) => {
+												console.log(err);
+											});
+									}}
 								/>
 							);
 						})}
