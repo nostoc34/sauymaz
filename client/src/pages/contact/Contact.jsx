@@ -5,6 +5,7 @@ import Header from "../../layout/header/Header";
 import MailForm from "./mail form/MailForm";
 import Info from "./info/Info";
 import Weekly from "./weekly/Weekly";
+import Week from "./weekly/Week";
 
 function Contact() {
 	const { setCollapsed } = useContext(MainContext);
@@ -16,7 +17,8 @@ function Contact() {
 		<div>
 			<Header header="İLETİŞİM" />
 			<div className="contact-cont">
-				<Weekly />
+				{/* <Weekly /> */}
+				<Week />
 				<div className="contact">
 					<MailForm />
 					<Info />

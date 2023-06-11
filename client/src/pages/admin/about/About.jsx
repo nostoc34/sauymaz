@@ -183,55 +183,44 @@ function About() {
 								handleSubmit,
 								setFieldValue,
 							}) => (
-								<form onSubmit={handleSubmit}>
-									<div className="form-content">
-										<div className="img-section">
-											<Dropzone
-												acceptedFiles=".jpg, .jpeg, .png"
-												multiple={false}
-												onDrop={(acceptedFiles) =>
-													setFieldValue(
-														"picture",
-														acceptedFiles[0]
-													)
-												}
+								<form onSubmit={handleSubmit}  className="form">
+									<Dropzone
+										acceptedFiles=".jpg, .jpeg, .png"
+										multiple={false}
+										onDrop={(acceptedFiles) =>
+											setFieldValue(
+												"picture",
+												acceptedFiles[0]
+											)
+										}
+									>
+										{({ getRootProps, getInputProps }) => (
+											<div
+												className="img-input"
+												{...getRootProps()}
 											>
-												{({
-													getRootProps,
-													getInputProps,
-												}) => (
-													<div
-														className="img-input"
-														{...getRootProps()}
-													>
-														<div
-															{...getInputProps}
-														/>
-														{!values.picture ? (
-															<p>Resim Ekle</p>
-														) : (
-															values.picture.name
-														)}
-													</div>
+												<div {...getInputProps} />
+												{!values.picture ? (
+													<p>Resim Ekle</p>
+												) : (
+													values.picture.name
 												)}
-											</Dropzone>
-										</div>
-										<div className="profile-content">
-											<Field
-												onBlur={handleBlur}
-												onChange={handleChange}
-												value={values.title}
-												name="title"
-											/>
-											<Field
-												as="textarea"
-												onBlur={handleBlur}
-												onChange={handleChange}
-												value={values.content}
-												name="content"
-											/>
-										</div>
-									</div>
+											</div>
+										)}
+									</Dropzone>
+									<Field
+										onBlur={handleBlur}
+										onChange={handleChange}
+										value={values.title}
+										name="title"
+									/>
+									<Field
+										as="textarea"
+										onBlur={handleBlur}
+										onChange={handleChange}
+										value={values.content}
+										name="content"
+									/>
 									<button type="submit">Güncelle</button>
 								</form>
 							)}
@@ -302,7 +291,7 @@ function About() {
 								handleChange,
 								handleSubmit,
 							}) => (
-								<form onSubmit={handleSubmit}>
+								<form onSubmit={handleSubmit} className="form">
 									<Field
 										onBlur={handleBlur}
 										onChange={handleChange}
@@ -457,7 +446,7 @@ function About() {
 								handleChange,
 								handleSubmit,
 							}) => (
-								<form onSubmit={handleSubmit}>
+								<form onSubmit={handleSubmit} className="form">
 									<Field
 										onBlur={handleBlur}
 										onChange={handleChange}
@@ -609,7 +598,7 @@ function About() {
 								handleChange,
 								handleSubmit,
 							}) => (
-								<form onSubmit={handleSubmit}>
+								<form onSubmit={handleSubmit} className="form">
 									<Field
 										onBlur={handleBlur}
 										onChange={handleChange}

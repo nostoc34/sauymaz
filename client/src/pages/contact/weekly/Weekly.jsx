@@ -6,7 +6,6 @@ import Box from "@mui/material/Box";
 import { Formik, Field } from "formik";
 // import useMediaQuery from "@mui/material/useMediaQuery";
 import axios from "axios";
-import { values } from "lodash";
 
 function Weekly() {
 	const [data, setData] = useState([]);
@@ -54,6 +53,7 @@ function Weekly() {
 
 	const handleFormSubmit = async (values) => {
 		console.log(values);
+		console.log(day);
 		// fetch("http://localhost:5000/api/appointment", {
 		// 	method: "POST",
 		// 	body: values,
@@ -280,7 +280,9 @@ function Weekly() {
 																		x.monPm3Time
 																	}
 																	onClick={() => {
-																		setDay("Pazartesi");
+																		setDay(
+																			"Pazartesi"
+																		);
 																	}}
 																/>
 															</label>
@@ -310,7 +312,7 @@ function Weekly() {
 												<Field
 													id="day"
 													name="day"
-													value = {day}
+													value={day}
 												/>
 											</div>
 											<button type="submit">

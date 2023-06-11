@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Dropzone from "react-dropzone";
+import "./home.scss";
 
 import AnnouncementFrame from "./announcement frame/AnnouncementFrame";
 import NavbarLinks from "./navbar links/NavbarLinks";
@@ -135,10 +136,11 @@ function Home() {
 		flexDirection: "column",
 		alignItems: "center",
 	};
+
 	return (
 		<div className="admin-home admin-section">
 
-			<div
+			{/* <div
 				className="admin-home-item admin-operation"
 				onClick={() => {
 					if (!open.newUser) {
@@ -196,13 +198,16 @@ function Home() {
 								handleChange,
 								handleSubmit,
 							}) => (
-								<form onSubmit={handleSubmit}>
+								<form
+									onSubmit={handleSubmit}
+								>
 									<Field
 										onBlur={handleBlur}
 										onChange={handleChange}
 										value={values.name}
 										name="name"
 										autocomplete="off"
+										placeholder="Kullanıcı"
 									/>
 
 									<button type="submit">Ekle</button>
@@ -211,7 +216,7 @@ function Home() {
 						</Formik>
 					</Box>
 				</Modal>
-			</div>
+			</div> */}
 
 			<div
 				className="admin-home-item  admin-operation"
@@ -274,7 +279,7 @@ function Home() {
 								handleChange,
 								handleSubmit,
 							}) => (
-								<form onSubmit={handleSubmit}>
+								<form onSubmit={handleSubmit} className="form">
 									<Field
 										onBlur={handleBlur}
 										onChange={handleChange}
@@ -363,50 +368,39 @@ function Home() {
 								handleSubmit,
 								setFieldValue,
 							}) => (
-								<form onSubmit={handleSubmit}>
-									<div className="form-content">
-										<div className="img-section">
-											<Dropzone
-												acceptedFiles=".jpg, .jpeg, .png"
-												multiple={false}
-												onDrop={(acceptedFiles) =>
-													setFieldValue(
-														"picture",
-														acceptedFiles[0]
-													)
-												}
+								<form onSubmit={handleSubmit}  className="form">
+									<Dropzone
+										acceptedFiles=".jpg, .jpeg, .png"
+										multiple={false}
+										onDrop={(acceptedFiles) =>
+											setFieldValue(
+												"picture",
+												acceptedFiles[0]
+											)
+										}
+									>
+										{({ getRootProps, getInputProps }) => (
+											<div
+												className="img-input"
+												{...getRootProps()}
 											>
-												{({
-													getRootProps,
-													getInputProps,
-												}) => (
-													<div
-														className="img-input"
-														{...getRootProps()}
-													>
-														<div
-															{...getInputProps}
-														/>
-														{!values.picture ? (
-															<p>Resim Ekle</p>
-														) : (
-															values.picture.name
-														)}
-													</div>
+												<div {...getInputProps} />
+												{!values.picture ? (
+													<p>Resim Ekle</p>
+												) : (
+													values.picture.name
 												)}
-											</Dropzone>
-										</div>
-										<div className="profile-content">
-											<Field
-												as="textarea"
-												onBlur={handleBlur}
-												onChange={handleChange}
-												value={values.content}
-												name="content"
-												placeholder="İçerik"
-											/>
-										</div>
-									</div>
+											</div>
+										)}
+									</Dropzone>
+									<Field
+										as="textarea"
+										onBlur={handleBlur}
+										onChange={handleChange}
+										value={values.content}
+										name="content"
+										placeholder="İçerik"
+									/>
 									<button type="submit">Güncelle</button>
 								</form>
 							)}
@@ -455,57 +449,48 @@ function Home() {
 								handleSubmit,
 								setFieldValue,
 							}) => (
-								<form onSubmit={handleSubmit}>
-									<div className="form-content">
-										<div className="img-section">
-											<Dropzone
-												acceptedFiles=".jpg, .jpeg, .png"
-												multiple={false}
-												onDrop={(acceptedFiles) =>
-													setFieldValue(
-														"picture",
-														acceptedFiles[0]
-													)
-												}
+								<form onSubmit={handleSubmit}  className="form">
+									<Dropzone
+										acceptedFiles=".jpg, .jpeg, .png"
+										multiple={false}
+										onDrop={(acceptedFiles) =>
+											setFieldValue(
+												"picture",
+												acceptedFiles[0]
+											)
+										}
+									>
+										{({ getRootProps, getInputProps }) => (
+											<div
+												className="img-input"
+												{...getRootProps()}
 											>
-												{({
-													getRootProps,
-													getInputProps,
-												}) => (
-													<div
-														className="img-input"
-														{...getRootProps()}
-													>
-														<div
-															{...getInputProps}
-														/>
-														{!values.picture ? (
-															<p>Resim Ekle</p>
-														) : (
-															values.picture.name
-														)}
-													</div>
+												<div {...getInputProps} />
+												{!values.picture ? (
+													<p>Resim Ekle</p>
+												) : (
+													values.picture.name
 												)}
-											</Dropzone>
-										</div>
-										<div>
-											<Field
-												onBlur={handleBlur}
-												onChange={handleChange}
-												value={values.title}
-												name="title"
-												placeholder="Başlık"
-											/>
-											<Field
-												as="textarea"
-												onBlur={handleBlur}
-												onChange={handleChange}
-												value={values.content}
-												name="content"
-												placeholder="İçerik"
-											/>
-										</div>
-									</div>
+											</div>
+										)}
+									</Dropzone>
+
+									<Field
+										onBlur={handleBlur}
+										onChange={handleChange}
+										value={values.title}
+										name="title"
+										placeholder="Başlık"
+									/>
+									<Field
+										as="textarea"
+										onBlur={handleBlur}
+										onChange={handleChange}
+										value={values.content}
+										name="content"
+										placeholder="İçerik"
+									/>
+
 									<button type="submit">Ekle</button>
 								</form>
 							)}

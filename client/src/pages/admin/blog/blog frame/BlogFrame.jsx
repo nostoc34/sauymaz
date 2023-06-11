@@ -24,97 +24,91 @@ function BlogFrame(props) {
 	};
 
 	return (
-        <>
-		<div
-			id={props.id}
-			onClick={() => {
-				if (!open) {
-					setOpen(true);
-				}
-			}}
-		>
-			<div>{props.title}</div>
-
-			<Modal
-				open={open}
-				onClose={() => {
-					setOpen(false);
+		<>
+			<div
+				className="update-delete"
+				id={props.id}
+				onClick={() => {
+					if (!open) {
+						setOpen(true);
+					}
 				}}
-				aria-labelledby="modal-modal-title"
-				aria-describedby="modal-modal-description"
 			>
-				<Box sx={style}>
-					<Formik
-						onSubmit={props.update}
-						initialValues={{
-							title: props.title,
-							content: props.content,
-							picture: "",
-						}}
-					>
-						{({
-							values,
-							handleBlur,
-							handleChange,
-							handleSubmit,
-							setFieldValue,
-						}) => (
-							<form onSubmit={handleSubmit}>
-								<div className="form-content">
-									<div className="img-section">
-										<Dropzone
-											acceptedFiles=".jpg, .jpeg, .png"
-											multiple={false}
-											onDrop={(acceptedFiles) =>
-												setFieldValue(
-													"picture",
-													acceptedFiles[0]
-												)
-											}
-										>
-											{({
-												getRootProps,
-												getInputProps,
-											}) => (
-												<div
-													className="img-input"
-													{...getRootProps()}
-												>
-													<div {...getInputProps} />
-													{!values.picture ? (
-														<p>Resim Ekle</p>
-													) : (
-														values.picture.name
-													)}
-												</div>
-											)}
-										</Dropzone>
-									</div>
-									<div>
-										<Field
-											onBlur={handleBlur}
-											onChange={handleChange}
-											value={values.title}
-											name="title"
-										/>
-										<Field
-											as="textarea"
-											onBlur={handleBlur}
-											onChange={handleChange}
-											value={values.content}
-											name="content"
-										/>
-									</div>
-								</div>
-								<button type="submit">Güncelle</button>
-							</form>
-						)}
-					</Formik>
-				</Box>
-			</Modal>
-		</div>
-        <button onClick={props.delete}>Sil</button>
-        </>
+				<div className="ud-title">{props.title}</div>
+
+				<Modal
+					open={open}
+					onClose={() => {
+						setOpen(false);
+					}}
+					aria-labelledby="modal-modal-title"
+					aria-describedby="modal-modal-description"
+				>
+					<Box sx={style}>
+						<Formik
+							onSubmit={props.update}
+							initialValues={{
+								title: props.title,
+								content: props.content,
+								picture: "",
+							}}
+						>
+							{({
+								values,
+								handleBlur,
+								handleChange,
+								handleSubmit,
+								setFieldValue,
+							}) => (
+								<form onSubmit={handleSubmit} className="form">
+									<Dropzone
+										acceptedFiles=".jpg, .jpeg, .png"
+										multiple={false}
+										onDrop={(acceptedFiles) =>
+											setFieldValue(
+												"picture",
+												acceptedFiles[0]
+											)
+										}
+									>
+										{({ getRootProps, getInputProps }) => (
+											<div
+												className="img-input"
+												{...getRootProps()}
+											>
+												<div {...getInputProps} />
+												{!values.picture ? (
+													<p>Resim Ekle</p>
+												) : (
+													values.picture.name
+												)}
+											</div>
+										)}
+									</Dropzone>
+									<Field
+										onBlur={handleBlur}
+										onChange={handleChange}
+										value={values.title}
+										name="title"
+									/>
+									<Field
+										as="textarea"
+										onBlur={handleBlur}
+										onChange={handleChange}
+										value={values.content}
+										name="content"
+									/>
+									<button type="submit">Güncelle</button>
+								</form>
+							)}
+						</Formik>
+					</Box>
+				</Modal>
+			</div>
+			<button className="delete-button" onClick={props.delete}>
+				Sil
+			</button>
+		</>
 	);
 }
 

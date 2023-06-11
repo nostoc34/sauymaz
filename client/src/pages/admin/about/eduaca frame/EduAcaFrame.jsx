@@ -4,6 +4,7 @@ import Modal from "@mui/material/Modal";
 import { Formik, Field } from "formik";
 import axios from "axios";
 import MainContext from "../../../../MainContext";
+import "./eduacaframe.scss";
 
 function EduAcaFrame(props) {
 	const { token } = useContext(MainContext);
@@ -27,6 +28,7 @@ function EduAcaFrame(props) {
 	const [open, setOpen] = useState(false);
 	return (
 		<div
+			className="edu-aca-update"
 			onClick={() => {
 				if (!open) {
 					setOpen(true);
@@ -78,7 +80,7 @@ function EduAcaFrame(props) {
 							handleChange,
 							handleSubmit,
 						}) => (
-							<form onSubmit={handleSubmit}>
+							<form onSubmit={handleSubmit} className="form">
 								<Field
 									onBlur={handleBlur}
 									onChange={handleChange}

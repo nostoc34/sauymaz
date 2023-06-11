@@ -4,7 +4,7 @@ const appointmentSchema = mongoose.Schema({
     firstname: String,
     lastname: String,
     email: String,
-    date: String,
+    time: String,
     day: String,
 });
 

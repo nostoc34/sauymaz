@@ -14,6 +14,7 @@ import { newBlog, updateBlog } from "./controllers/blog.js";
 import { registerAdmin } from "./controllers/admin.js";
 import { protect } from "./middlewares/auth.js";
 
+
 import aProfileRoutes from "./routes/aboutProfile.js";
 import hProfileRoutes from "./routes/homeProfile.js";
 import academicRoutes from "./routes/academic.js";
@@ -77,9 +78,6 @@ app.use("/api/navbar", navbarLinkRoutes);
 app.use("/api/program", programRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/appointment", appointmentRoutes);
-
-
-
 
 //connect to db
 const PORT = process.env.PORT || 5000;

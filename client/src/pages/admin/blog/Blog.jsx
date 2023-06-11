@@ -116,57 +116,46 @@ function Blog() {
 								handleSubmit,
 								setFieldValue,
 							}) => (
-								<form onSubmit={handleSubmit}>
-									<div className="form-content">
-										<div className="img-section">
-											<Dropzone
-												acceptedFiles=".jpg, .jpeg, .png"
-												multiple={false}
-												onDrop={(acceptedFiles) =>
-													setFieldValue(
-														"picture",
-														acceptedFiles[0]
-													)
-												}
+								<form onSubmit={handleSubmit} className="form">
+									<Dropzone
+										acceptedFiles=".jpg, .jpeg, .png"
+										multiple={false}
+										onDrop={(acceptedFiles) =>
+											setFieldValue(
+												"picture",
+												acceptedFiles[0]
+											)
+										}
+									>
+										{({ getRootProps, getInputProps }) => (
+											<div
+												className="img-input"
+												{...getRootProps()}
 											>
-												{({
-													getRootProps,
-													getInputProps,
-												}) => (
-													<div
-														className="img-input"
-														{...getRootProps()}
-													>
-														<div
-															{...getInputProps}
-														/>
-														{!values.picture ? (
-															<p>Resim Ekle</p>
-														) : (
-															values.picture.name
-														)}
-													</div>
+												<div {...getInputProps} />
+												{!values.picture ? (
+													<p>Resim Ekle</p>
+												) : (
+													values.picture.name
 												)}
-											</Dropzone>
-										</div>
-										<div>
-											<Field
-												onBlur={handleBlur}
-												onChange={handleChange}
-												value={values.title}
-												name="title"
-												placeholder="Başlık"
-											/>
-											<Field
-												as="textarea"
-												onBlur={handleBlur}
-												onChange={handleChange}
-												value={values.content}
-												name="content"
-												placeholder="İçerik"
-											/>
-										</div>
-									</div>
+											</div>
+										)}
+									</Dropzone>
+									<Field
+										onBlur={handleBlur}
+										onChange={handleChange}
+										value={values.title}
+										name="title"
+										placeholder="Başlık"
+									/>
+									<Field
+										as="textarea"
+										onBlur={handleBlur}
+										onChange={handleChange}
+										value={values.content}
+										name="content"
+										placeholder="İçerik"
+									/>
 									<button type="submit">Ekle</button>
 								</form>
 							)}

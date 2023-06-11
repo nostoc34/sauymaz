@@ -6,7 +6,6 @@ import { Formik, Field } from "formik";
 function AcaLinkFrame(props) {
 	const [open, setOpen] = useState(false);
 
-
 	const style = {
 		position: "absolute",
 		top: "50%",
@@ -24,66 +23,62 @@ function AcaLinkFrame(props) {
 	};
 
 	return (
-        <>
-		<div
-			id={props.id}
-			onClick={(e) => {
-				if (!open) {
-					setOpen(true);
-				}
-			}}
-		>
-			<div>{props.title}</div>
-
-			<Modal
-				open={open}
-				onClose={() => {
-					setOpen(false);
+		<>
+			<div
+				className="update-delete"
+				id={props.id}
+				onClick={(e) => {
+					if (!open) {
+						setOpen(true);
+					}
 				}}
-				aria-labelledby="modal-modal-title"
-				aria-describedby="modal-modal-description"
 			>
-				<Box sx={style}>
-					<Formik
-						onSubmit={props.update}
-						initialValues={{
-							title: props.title,
-							link: props.link,
-						}}
-					>
-						{({
-							values,
-							handleBlur,
-							handleChange,
-							handleSubmit,
-						}) => (
-							<form onSubmit={handleSubmit}>
-								<div className="form-content">
-									<div>
-										<Field
-											onBlur={handleBlur}
-											onChange={handleChange}
-											value={values.title}
-											name="title"
-										/>
-										<Field
-											as="textarea"
-											onBlur={handleBlur}
-											onChange={handleChange}
-											value={values.link}
-											name="link"
-										/>
-									</div>
-								</div>
-								<button type="submit">Güncelle</button>
-							</form>
-						)}
-					</Formik>
-				</Box>
-			</Modal>
-		</div>
-        <button onClick={props.delete}>Sil</button>
-        </>
+				<div className="ud-title">{props.title}</div>
+
+				<Modal
+					open={open}
+					onClose={() => {
+						setOpen(false);
+					}}
+					aria-labelledby="modal-modal-title"
+					aria-describedby="modal-modal-description"
+				>
+					<Box sx={style}>
+						<Formik
+							onSubmit={props.update}
+							initialValues={{
+								title: props.title,
+								link: props.link,
+							}}
+						>
+							{({
+								values,
+								handleBlur,
+								handleChange,
+								handleSubmit,
+							}) => (
+								<form onSubmit={handleSubmit} className="form">
+									<Field
+										onBlur={handleBlur}
+										onChange={handleChange}
+										value={values.title}
+										name="title"
+									/>
+									<Field
+										onBlur={handleBlur}
+										onChange={handleChange}
+										value={values.link}
+										name="link"
+									/>
+									<button type="submit">Güncelle</button>
+								</form>
+							)}
+						</Formik>
+					</Box>
+				</Modal>
+			</div>
+			<button className="delete-button" onClick={props.delete}>Sil</button>
+		</>
 	);
 }
 

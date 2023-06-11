@@ -1,0 +1,16 @@
+.navbarlinks-admin {
+    .state {
+        text-align: center;
+        color: #fff;
+        font-size: 20px;
+        padding: 5px;
+        margin-top: 20px;
+    }
+    .state-forms {
+        display: flex;
+        form {
+            width: 200px;
+            margin-top: 0;
+        }
+    }
+}
